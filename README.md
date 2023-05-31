@@ -24,6 +24,16 @@ Hasło: password123
 
 ![image](https://github.com/TheRockefelleR/lab11/assets/84729968/d5490deb-e814-4def-90b4-3559774d48fa)
 
+<h3>Reprezentacja graficzna docker-compose.yml</h3>
+
+Odpowiadając na pytanie, tak jest możliwa reprezentacja graficzna dla pliku docker-compose.yml
+
+Wykorzytujemy do tego docker-compose-viz, sposób użycia jest pod linkiem: https://github.com/pmsipilot/docker-compose-viz
+
+<h5>Efekt:</h5>
+
+![docker-compose](https://github.com/TheRockefelleR/lab11/assets/84729968/0f277c78-d4cd-41d1-bfa8-dc1bd7e011f8)
+
 <h3>Podsumowanie</h3>
 
 Podczas mapowania portów Nginx użyłem portu 6660 zamiast 6666, gdyż port 6666 był już zajęty.
