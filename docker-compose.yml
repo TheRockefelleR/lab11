@@ -1,0 +1,57 @@
+version: '3.7'
+
+services:
+
+  nginx:
+    build: ./nginx/  # Budowanie obrazu Nginx z plików w katalogu ./nginx/
+    container_name: nginx-container
+    ports:
+      - "6660:80"  # Mapowanie portu 6660 hosta na port 80 kontenera Nginx, niestety port 6666 jest uzywany i nie moglem uzyc go w zadaniu
+    links:
+      - php  # Połączenie z kontenerem php
+    volumes:
+      - ./www/html/:/var/www/html/  # Montowanie katalogu ./www/html/ hosta do katalogu /var/www/html/ kontenera Nginx
+    networks:
+      - back  # Podłączenie do sieci back
+      - front  # Podłączenie do sieci front
+
+  php:
+    image: php:7.0-fpm  # Użycie obrazu PHP 7.0 FPM
+    container_name: php-container
+    expose:
+      - 9000  # Odsłonięcie portu 9000 w kontenerze PHP
+    volumes:
+      - ./www/html/:/var/www/html/  # Montowanie katalogu ./www/html/ hosta do katalogu /var/www/html/ kontenera PHP
+    networks:
+      - back  # Podłączenie do sieci back
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin:latest  # Użycie obrazu najnowszej wersji PHPMyAdmin
+    restart: always
+    ports:
+      - 6001:80  # Mapowanie portu 6001 hosta na port 80 kontenera PHPMyAdmin
+    networks:
+      - back  # Podłączenie do sieci back
+
+  db:
+    container_name: mysql
+    image: mysql:5.7  # Użycie obrazu MySQL 5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password123  # Ustawienie hasła roota dla kontenera MySQL
+    ports:
+      - "3307:3306"  # Mapowanie portu 3307 hosta na port 3306 kontenera MySQL
+    volumes:
+      - db-vol:/var/lib/mysql  # Montowanie woluminu db-vol do katalogu /var/lib/mysql kontenera MySQL
+    networks:
+      - back  # Podłączenie do sieci back
+
+volumes:
+  db-vol:  # Definicja woluminu db-vol
+
+networks:
+  back:
+    driver: bridge  # Ustawienie sieci typu bridge dla sieci back
+  front:
+    driver: bridge  # Ustawienie sieci typu bridge dla sieci front
