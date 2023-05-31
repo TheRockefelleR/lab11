@@ -27,8 +27,11 @@ Hasło: password123
 <h3>Podsumowanie</h3>
 
 Podczas mapowania portów Nginx użyłem portu 6660 zamiast 6666, gdyż port 6666 był już zajęty.
+
 Dodatkowo zamieszam linki do materiałów z których korzystałem.
+
 Połączenie Nginx i php: https://www.atlantic.net/vps-hosting/how-to-deploy-a-php-application-with-nginx-and-mysql-using-docker-and-docker-compose/
+
 Połączenie MySQL i phpmyadmin: https://szkoladockera.pl/mysql-phpmyadmin-z-poziomu-dockera/
 
 
